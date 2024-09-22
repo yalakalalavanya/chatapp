@@ -1,7 +1,5 @@
-
 from dotenv import load_dotenv
 load_dotenv()
-import requests
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
@@ -9,6 +7,19 @@ import os
 # Replace with your actual API key
 API_URL = os.getenv('API_URL')
 API_KEY = os.getenv('API_KEY')
+
+from http.server import BaseHTTPRequestHandler
+
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write('Hello, World!'.encode())
+
+    def do_POST(self):
+        # Handle POST requests here
+        pass
 import requests
 
 def get_bot_response_google_ai(user_message):
