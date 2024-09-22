@@ -1,12 +1,14 @@
+
+from dotenv import load_dotenv
+load_dotenv()
 import requests
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
-
+import os
 # Replace with your actual API key
-API_KEY = 'AIzaSyDtVsVoUCC0cGSVxvDrLqNVm52ekYsfJ-o'
-API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent'
-
+API_URL = os.getenv('API_URL')
+API_KEY = os.getenv('API_KEY')
 import requests
 
 def get_bot_response_google_ai(user_message):
